@@ -1,0 +1,16 @@
+import numpy as np
+
+# Define the matrix
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Compute the characteristic polynomial
+p = np.poly(A)
+
+# Evaluate the polynomial at the matrix
+q = np.polyval(p, A)
+
+# Check if the result is zero
+if np.allclose(q, np.zeros_like(A)):
+    print("The Cayley-Hamilton theorem is verified.")
+else:
+    print("The Cayley-Hamilton theorem is not verified.")
