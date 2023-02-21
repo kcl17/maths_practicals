@@ -1,0 +1,38 @@
+import numpy as np
+
+# Define the matrix A
+A = np.array([[1, 2, 3],
+              [2, 4, 6],
+              [3, 6, 9]])
+
+# Find the basis of the column space
+C = np.linalg.matrix_rank(A)
+basis_col = A[:, :C]
+
+# Find the basis of the null space
+N = np.linalg.matrix_rank(A) - np.linalg.matrix_rank(A, tol=1e-10)
+basis_null = np.zeros((A.shape[1], N))
+if N > 0:
+    Q, R = np.linalg.qr(A.T)
+    basis_null = Q[:, -N:]
+
+# Find the basis of the row space
+basis_row = np.linalg.matrix_rank(A.T)
+basis_row = A.T[:, :basis_row]
+
+# Find the basis of the left null space
+L = np.linalg.matrix_rank(A.T) - np.linalg.matrix_rank(A.T, tol=1e-10)
+basis_left_null = np.zeros((A.shape[0], L))
+if L > 0:
+    Q, R = np.linalg.qr(A)
+    basis_left_null = Q[:, -L:]
+
+# Print the basis vectors
+print("Basis of column space:")
+print(basis_col)
+print("\nBasis of null space:")
+print(basis_null)
+print("\nBasis of row space:")
+print(basis_row)
+print("\nBasis of left null space:")
+print(basis_left_null)
