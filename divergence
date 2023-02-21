@@ -1,0 +1,22 @@
+import numpy as np
+
+# Define the vector field as a function of x, y, and z
+def vector_field(x, y, z):
+    return np.array([x**2 + y*z, y**2 + x*z, z**2 + x*y])
+
+# Define a point at which to compute the divergence
+point = np.array([1, 2, 3])
+
+# Define a small step size for numerical differentiation
+h = 0.0001
+
+# Compute the partial derivatives of the vector field at the point
+dfdx = (vector_field(point[0] + h, point[1], point[2])[0] - vector_field(point[0] - h, point[1], point[2])[0]) / (2 * h)
+dfdy = (vector_field(point[0], point[1] + h, point[2])[1] - vector_field(point[0], point[1] - h, point[2])[1]) / (2 * h)
+dfdz = (vector_field(point[0], point[1], point[2] + h)[2] - vector_field(point[0], point[1], point[2] - h)[2]) / (2 * h)
+
+# Combine the partial derivatives into a scalar divergence value
+divergence = dfdx + dfdy + dfdz
+
+# Print the divergence value
+print("Divergence of the vector field at point", point, "is", divergence)
