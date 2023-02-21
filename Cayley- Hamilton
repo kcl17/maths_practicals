@@ -1,0 +1,17 @@
+import numpy as np
+
+# Define the matrix
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Find the eigenvalues and eigenvectors
+eigenvals, eigenvects = np.linalg.eig(A)
+
+# Check if the matrix is diagonalizable
+if len(eigenvals) == len(set(eigenvals)):
+    print("The matrix is diagonalizable.")
+else:
+    print("The matrix is not diagonalizable.")
+
+# Print the eigenvalues and eigenvectors
+print("Eigenvalues:", eigenvals)
+print("Eigenvectors:", eigenvects)
