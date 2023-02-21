@@ -1,0 +1,31 @@
+import numpy as np
+
+# Define the message to be encoded
+message = "HELLO WORLD"
+
+# Convert the message to a vector of numbers
+message_vec = np.array([ord(c) for c in message])
+
+# Define the encoding matrix
+A = np.array([[3, 2], [1, 4]])
+
+# Check if the encoding matrix is nonsingular
+if np.linalg.det(A) == 0:
+    print("The encoding matrix is singular.")
+else:
+    # Encode the message
+    encoded_message_vec = A.dot(message_vec)
+
+    # Define the decoding matrix
+    A_inv = np.linalg.inv(A)
+
+    # Decode the message
+    decoded_message_vec = A_inv.dot(encoded_message_vec)
+
+    # Convert the decoded message vector to a string
+    decoded_message = "".join([chr(int(x)) for x in decoded_message_vec])
+
+    # Print the results
+    print("Original message:", message)
+    print("Encoded message:", encoded_message_vec)
+    print("Decoded message:", decoded_message)
