@@ -1,0 +1,22 @@
+import numpy as np
+
+# Define the scalar field as a function of x, y, and z
+def f(x, y, z):
+    return x**2 + y**2 + z**2
+
+# Define a point at which to compute the gradient
+point = np.array([1, 2, 3])
+
+# Define a small step size for numerical differentiation
+h = 0.0001
+
+# Compute the partial derivatives of f at the point
+dfdx = (f(point[0] + h, point[1], point[2]) - f(point[0] - h, point[1], point[2])) / (2 * h)
+dfdy = (f(point[0], point[1] + h, point[2]) - f(point[0], point[1] - h, point[2])) / (2 * h)
+dfdz = (f(point[0], point[1], point[2] + h) - f(point[0], point[1], point[2] - h)) / (2 * h)
+
+# Combine the partial derivatives into a gradient vector
+gradient = np.array([dfdx, dfdy, dfdz])
+
+# Print the gradient vector
+print("Gradient of f at point", point, "is", gradient)
